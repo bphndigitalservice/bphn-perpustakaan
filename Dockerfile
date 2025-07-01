@@ -46,8 +46,7 @@ RUN chown -R www-data:www-data /var/www/html \
     && find /var/www/html -type d -exec chmod 755 {} \; \
     && find /var/www/html -type f -exec chmod 644 {} \;
 
-# Configure Apache (Alpine uses httpd.conf instead of apache2.conf)
-RUN echo "ServerName localhost" >> /etc/apache2/httpd.conf
+COPY docker/apache/vhost.conf /etc/apache2/sites-enabled/000-default.conf
 
 # Expose port 80
 EXPOSE 80 443
