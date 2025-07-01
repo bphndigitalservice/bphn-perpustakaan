@@ -9,7 +9,7 @@ images/default/webicon.*
 files/*
 !files/membercard/*
 repository/*
-config/*
+#config/*
 cache/*
 .DS_Store
 ._.*
@@ -17,9 +17,9 @@ cache/*
 .project
 .idea
 .vscode
-sysconfig.local.inc.php
-config/sysconfig.local.inc.php
-sysconfig.inc.php
+#sysconfig.local.inc.php
+#config/sysconfig.local.inc.php
+#sysconfig.inc.php
 slims8_akasia.sublime-project
 slims8_akasia.sublime-workspace
 
