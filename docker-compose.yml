@@ -24,7 +24,7 @@ services:
     restart: always
 
   db:
-    image: mariadb:10.6
+    image: mariadb:10.3
     container_name: slims_db
     ports:
       - "3306:3306"
