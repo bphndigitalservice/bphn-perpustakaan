@@ -46,9 +46,6 @@ RUN chown -R www-data:www-data /app \
     && find /app -type d -exec chmod 755 {} \; \
     && find /app -type f -exec chmod 644 {} \;
 
-RUN echo "IncludeOptional /etc/apache2/sites-enabled/*.conf" >> /etc/apache2/httpd.conf
-COPY docker/apache/vhost.conf /etc/apache2/sites-enabled/000-default.conf
-
 # Copy entrypoint script
 COPY docker-entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
