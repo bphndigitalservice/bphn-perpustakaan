@@ -1,5 +1,7 @@
 FROM webdevops/php-apache:8.1-alpine
 
+RUN echo "https://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories
+
 # Install dependencies
 RUN apk update && \
     apk add --no-cache \
@@ -13,7 +15,8 @@ RUN apk update && \
     unzip \
     git \
     mariadb-client \
-    ca-certificates
+    ca-certificates \
+    yaz
 
 # Install PHP extensions
 # Alpine needs additional dependencies for some PHP extensions
@@ -27,8 +30,7 @@ RUN apk add --no-cache oniguruma-dev && \
     intl \
     xml \
     zip \
-    mbstring \
-    yaz
+    mbstring
 
 # Enable Apache modules in Alpine
 RUN sed -i 's/#LoadModule rewrite_module/LoadModule rewrite_module/' /etc/apache2/httpd.conf && \
