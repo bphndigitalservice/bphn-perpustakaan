@@ -57,6 +57,4 @@ RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 # Expose port 80
 EXPOSE 80
 
-# Set entrypoint and command
-ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ["apache2-foreground"]
