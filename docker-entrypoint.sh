@@ -12,20 +12,18 @@ mkdir -p /app/images
 mkdir -p /app/repository
 
 # Set proper ownership for security
-chown -R www-data:www-data /app/config
-chown -R www-data:www-data /app/files
-chown -R www-data:www-data /app/images
-chown -R www-data:www-data /app/repository
+chown -R apache:apache /app/config
+chown -R apache:apache /app/files
+chown -R apache:apache /app/images
+chown -R apache:apache /app/repository
 
-# Set proper permissions - directories writable by owner, files readable
-find /app/config -type d -exec chmod 755 {} \;
-find /app/config -type f -exec chmod 644 {} \;
-find /app/files -type d -exec chmod 755 {} \;
-find /app/files -type f -exec chmod 644 {} \;
-find /app/images -type d -exec chmod 755 {} \;
-find /app/images -type f -exec chmod 644 {} \;
-find /app/repository -type d -exec chmod 755 {} \;
-find /app/repository -type f -exec chmod 644 {} \;
-
-# Execute the command provided to the container
-exec "$@"
+# Set proper permissions - directories and files writable by owner and group
+# This ensures both the container and host can write to these directories
+find /app/config -type d -exec chmod 775 {} \;
+find /app/config -type f -exec chmod 664 {} \;
+find /app/files -type d -exec chmod 775 {} \;
+find /app/files -type f -exec chmod 664 {} \;
+find /app/images -type d -exec chmod 775 {} \;
+find /app/images -type f -exec chmod 664 {} \;
+find /app/repository -type d -exec chmod 775 {} \;
+find /app/repository -type f -exec chmod 664 {} \;

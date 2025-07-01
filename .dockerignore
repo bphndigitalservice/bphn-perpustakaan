@@ -1,0 +1,70 @@
+# Version control
+.git
+.gitignore
+.svn
+.hg
+
+# Development and documentation
+README.md
+LICENSE
+changes.txt
+supports.txt
+*.log
+tests/
+test/
+docs/
+doc/
+examples/
+sample/
+install/
+upgrade/
+
+# Docker related
+Dockerfile
+docker-compose.yml
+docker/
+.dockerignore
+
+# Temporary files and logs
+*.log
+*.tmp
+*.temp
+*.swp
+*.swo
+tmp/
+temp/
+logs/
+
+# Dependency directories that can be reinstalled
+node_modules/
+
+# Build artifacts
+*.tar
+*.gz
+*.zip
+*.rar
+*.7z
+
+# IDE and editor files
+.idea/
+.vscode/
+*.sublime-*
+*.code-workspace
+.project
+.settings/
+.classpath
+.DS_Store
+Thumbs.db
+
+# Configuration files that might contain sensitive information
+# Note: Keep only what's necessary for the application to run
+*.env
+.env*
+
+# Project-specific exclusions
+# Note: These directories are mounted as volumes in docker-compose.yml
+# Uncomment if you want to exclude them from the image
+# files/
+# images/
+# repository/
+# config/

@@ -1,0 +1,43 @@
+version: '3'
+
+services:
+  slims:
+    image: ghcr.io/bphndigitalservice/bphn-perpustakaan:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./files:/app/files
+      - ./images:/app/images
+      - ./repository:/app/repository
+      - ./config:/app/config
+    environment:
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+      - DB_NAME=${DB_NAME}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+    networks:
+      - slims_network
+    restart: always
+
+  db:
+    image: mariadb:10.3
+    container_name: slims_db
+    ports:
+      - "3306:3306"
+    volumes:
+      - slims_db_data:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+    networks:
+      - slims_network
+    restart: always
+
+networks:
+  slims_network:
+
+volumes:
+  slims_db_data:

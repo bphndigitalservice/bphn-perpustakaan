@@ -29,6 +29,9 @@ RUN apk add --no-cache oniguruma-dev && \
     zip \
     mbstring
 
+# Install Composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
 # Enable Apache modules in Alpine
 RUN sed -i 's/#LoadModule rewrite_module/LoadModule rewrite_module/' /etc/apache2/httpd.conf && \
     sed -i 's/#LoadModule headers_module/LoadModule headers_module/' /etc/apache2/httpd.conf && \
@@ -41,8 +44,11 @@ WORKDIR /app
 # Copy application files
 COPY . /app
 
-# Set permissions - following security best practices
-RUN chown -R www-data:www-data /app \
+# Install PHP dependencies with Composer
+RUN composer install --no-interaction --no-dev --optimize-autoloader
+
+# Set initial permissions - will be updated by entrypoint script for mounted volumes
+RUN chown -R apache:apache /app \
     && find /app -type d -exec chmod 755 {} \; \
     && find /app -type f -exec chmod 644 {} \;
 
@@ -50,6 +56,8 @@ RUN chown -R www-data:www-data /app \
 COPY docker-entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
+RUN useradd -u 1000 appuser
+USER appuser
 
 
 # Set entrypoint and command

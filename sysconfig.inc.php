@@ -182,7 +182,7 @@ $sysconf['spellchecker_enabled'] = true;
 header('Content-type: text/html; charset=UTF-8');
 
 /* GUI Template config */
-$sysconf['template']['dir'] = 'template';
+$sysconf['template']['dir'] = dirname(__FILE__).'/templates/';
 $sysconf['template']['theme'] = 'default';
 $sysconf['template']['css'] = $sysconf['template']['dir'].'/'.$sysconf['template']['theme'].'/style.css';
 
