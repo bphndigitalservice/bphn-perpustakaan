@@ -44,8 +44,7 @@ COPY . /var/www/html/
 # Set permissions - following security best practices
 RUN chown -R www-data:www-data /var/www/html \
     && find /var/www/html -type d -exec chmod 755 {} \; \
-    && find /var/www/html -type f -exec chmod 644 {} \; \
-    && chmod +x /var/www/html/docker-entrypoint.sh
+    && find /var/www/html -type f -exec chmod 644 {} \;
 
 # Configure Apache (Alpine uses httpd.conf instead of apache2.conf)
 RUN echo "ServerName localhost" >> /etc/apache2/httpd.conf
