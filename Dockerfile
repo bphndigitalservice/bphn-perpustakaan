@@ -50,10 +50,6 @@ RUN chown -R www-data:www-data /var/www/html \
 # Configure Apache (Alpine uses httpd.conf instead of apache2.conf)
 RUN echo "ServerName localhost" >> /etc/apache2/httpd.conf
 
-# Copy and set up entrypoint script
-COPY docker-entrypoint.sh /usr/local/bin/
-RUN chmod +x /usr/local/bin/docker-entrypoint.sh
-
 # Expose port 80
 EXPOSE 80
 
