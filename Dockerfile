@@ -56,9 +56,6 @@ RUN chown -R apache:apache /app \
 COPY docker-entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
-RUN useradd -u 1000 appuser
-USER appuser
-
 
 # Set entrypoint and command
 ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
