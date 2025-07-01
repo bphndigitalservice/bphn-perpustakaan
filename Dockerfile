@@ -53,10 +53,9 @@ COPY docker/apache/vhost.conf /etc/apache2/sites-enabled/000-default.conf
 COPY docker-entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
+
+
+# Set entrypoint and command
+ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
 # Expose port 80
 EXPOSE 80 443
-
-# Set entrypoint
-ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
-
-
