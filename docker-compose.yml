@@ -13,14 +13,14 @@ services:
       - ./images:/var/www/html/images
       - ./repository:/var/www/html/repository
       - ./config:/var/www/html/config
-    depends_on:
-      - db
     environment:
       - DB_HOST=db
       - DB_PORT=3306
       - DB_NAME=slims
       - DB_USER=slims
       - DB_PASSWORD=slims_password
+    networks:
+      - slims_network
     restart: always
 
   db:
@@ -35,7 +35,12 @@ services:
       - MYSQL_DATABASE=slims
       - MYSQL_USER=slims
       - MYSQL_PASSWORD=slims_password
+    networks:
+      - slims_network
     restart: always
+
+networks:
+  slims_network:
 
 volumes:
   slims_db_data:
