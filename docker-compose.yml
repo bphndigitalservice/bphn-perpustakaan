@@ -9,10 +9,10 @@ services:
     ports:
       - "80:80"
     volumes:
-      - ./files:/var/www/html/files
-      - ./images:/var/www/html/images
-      - ./repository:/var/www/html/repository
-      - ./config:/var/www/html/config
+      - ./files:/app/files
+      - ./images:/app/images
+      - ./repository:/app/repository
+      - ./config:/app/config
     environment:
       - DB_HOST=db
       - DB_PORT=3306

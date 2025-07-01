@@ -27,7 +27,8 @@ RUN apk add --no-cache oniguruma-dev && \
     intl \
     xml \
     zip \
-    mbstring
+    mbstring \
+    yaz
 
 # Enable Apache modules in Alpine
 RUN sed -i 's/#LoadModule rewrite_module/LoadModule rewrite_module/' /etc/apache2/httpd.conf && \
@@ -42,12 +43,21 @@ WORKDIR /app
 COPY . /app
 
 # Set permissions - following security best practices
-RUN chown -R www-data:www-data /var/www/html \
+RUN chown -R www-data:www-data /app \
     && find /app -type d -exec chmod 755 {} \; \
     && find /app -type f -exec chmod 644 {} \;
 
-#RUN echo "IncludeOptional /etc/apache2/sites-enabled/*.conf" >> /etc/apache2/httpd.conf
-#COPY docker/apache/vhost.conf /etc/apache2/sites-enabled/000-default.conf
+RUN echo "IncludeOptional /etc/apache2/sites-enabled/*.conf" >> /etc/apache2/httpd.conf
+COPY docker/apache/vhost.conf /etc/apache2/sites-enabled/000-default.conf
+
+# Copy entrypoint script
+COPY docker-entrypoint.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
 # Expose port 80
 EXPOSE 80 443
+
+# Set entrypoint
+ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
+
+
