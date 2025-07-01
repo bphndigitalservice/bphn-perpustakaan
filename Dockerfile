@@ -1,7 +1,5 @@
 FROM webdevops/php-apache:8.1-alpine
 
-RUN echo "https://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories
-
 # Install dependencies
 RUN apk update && \
     apk add --no-cache \
@@ -15,8 +13,7 @@ RUN apk update && \
     unzip \
     git \
     mariadb-client \
-    ca-certificates \
-    yaz
+    ca-certificates
 
 # Install PHP extensions
 # Alpine needs additional dependencies for some PHP extensions
