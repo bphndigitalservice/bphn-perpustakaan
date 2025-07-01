@@ -50,6 +50,4 @@ RUN chown -R www-data:www-data /var/www/html \
 RUN echo "ServerName localhost" >> /etc/apache2/httpd.conf
 
 # Expose port 80
-EXPOSE 80
-
-CMD ["apache2-foreground"]
+EXPOSE 80 443
