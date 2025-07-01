@@ -36,18 +36,18 @@ RUN sed -i 's/#LoadModule rewrite_module/LoadModule rewrite_module/' /etc/apache
     sed -i 's/AllowOverride None/AllowOverride All/' /etc/apache2/httpd.conf
 
 # Set working directory
-WORKDIR /var/www/html
+WORKDIR /app
 
 # Copy application files
-COPY . /var/www/html/
+COPY . /app
 
 # Set permissions - following security best practices
 RUN chown -R www-data:www-data /var/www/html \
-    && find /var/www/html -type d -exec chmod 755 {} \; \
-    && find /var/www/html -type f -exec chmod 644 {} \;
+    && find /app -type d -exec chmod 755 {} \; \
+    && find /app -type f -exec chmod 644 {} \;
 
-RUN echo "IncludeOptional /etc/apache2/sites-enabled/*.conf" >> /etc/apache2/httpd.conf
-COPY docker/apache/vhost.conf /etc/apache2/sites-enabled/000-default.conf
+#RUN echo "IncludeOptional /etc/apache2/sites-enabled/*.conf" >> /etc/apache2/httpd.conf
+#COPY docker/apache/vhost.conf /etc/apache2/sites-enabled/000-default.conf
 
 # Expose port 80
 EXPOSE 80 443
