@@ -3,6 +3,7 @@
 .gitignore
 .svn
 .hg
+.github
 
 # Development and documentation
 README.md
@@ -37,6 +38,8 @@ logs/
 
 # Dependency directories that can be reinstalled
 node_modules/
+vendor/
+
 
 # Build artifacts
 *.tar
