@@ -52,11 +52,6 @@ RUN chown -R apache:apache /app \
     && find /app -type d -exec chmod 755 {} \; \
     && find /app -type f -exec chmod 644 {} \;
 
-# Copy entrypoint script
-COPY docker-entrypoint.sh /usr/local/bin/
-RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
-# Set entrypoint and command
-ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
 # Expose port 80
 EXPOSE 80 443
