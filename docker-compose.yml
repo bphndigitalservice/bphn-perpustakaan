@@ -9,10 +9,10 @@ services:
     ports:
       - "80:80"
     volumes:
-      - ./files:/app/files
-      - ./images:/app/images
-      - ./repository:/app/repository
-      - ./config:/app/config
+      - slims_files:/app/files
+      - slims_images:/app/images
+      - slims_repository:/app/repository
+      - slims_config:/app/config
     environment:
       - DB_HOST=db
       - DB_PORT=3306
@@ -44,3 +44,7 @@ networks:
 
 volumes:
   slims_db_data:
+  slims_files:
+  slims_images:
+  slims_repository:
+  slims_config:

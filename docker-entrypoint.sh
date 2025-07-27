@@ -8,10 +8,10 @@ mkdir -p /app/images
 mkdir -p /app/repository
 
 # Set proper ownership for security
-chown -R apache:apache /app/config
-chown -R apache:apache /app/files
-chown -R apache:apache /app/images
-chown -R apache:apache /app/repository
+chown -R application:application /app/config
+chown -R application:application /app/files
+chown -R application:application /app/images
+chown -R application:application /app/repository
 
 chmod -R 777 /app/config
 chmod -R 777 /app/files
